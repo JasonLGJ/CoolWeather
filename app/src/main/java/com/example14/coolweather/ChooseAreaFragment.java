@@ -1,6 +1,7 @@
 package com.example14.coolweather;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.support.v4.widget.*;
 import com.example14.coolweather.db.City;
 import com.example14.coolweather.db.Country;
 import com.example14.coolweather.db.Province;
+import com.example14.coolweather.gson.Weather;
 import com.example14.coolweather.util.HttpUtil;
 import com.example14.coolweather.util.Utility;
 
@@ -101,6 +103,21 @@ public class ChooseAreaFragment extends Fragment {
                 }else if(currentLevel == LEVEL_CITY){
                     selectedCity = cityList.get(position);
                     queryCountries();
+                }else if (currentLevel == LEVEL_COUNTRY){
+                    //如果当前级别是县，则启动WeatherActivity，并把当前选中县的天气id传递出去
+                    int weatherId = countyList.get(position).getWeatherId();
+                    if (getActivity()instanceof MainActivity){//碎片在MainActivity中，则处理逻辑不变
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if (getActivity()instanceof WeatherActivity){//碎片在WeatherActivity中
+                        WeatherActivity activity = (WeatherActivity)getActivity();
+                        activity.drawerLayout.closeDrawer(view);//关闭滑动菜单
+                        activity.swipeRefresh.setRefreshing(true);//显示下拉刷新进度条
+                        activity.requestWeather(Integer.toString(weatherId));//请求城市天气信息
+                    }
+
                 }
             }
         });

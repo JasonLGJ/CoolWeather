@@ -6,7 +6,9 @@ import java.util.List;
 
 public class Weather {
 
+    @SerializedName("status")
     public String status;
+
     public Basic basic;
     public AQI aqi;
     public Now now;

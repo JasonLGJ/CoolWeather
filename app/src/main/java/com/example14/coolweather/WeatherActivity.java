@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -55,21 +56,21 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView spdText;//实时天气信息--风速
     private LinearLayout forecastLayout;//线性布局对象--预报天气
     private TextView aqiText;//空气质量--空气质量指数
-    private TextView coText;//空气质量--一氧化碳指数
-    private TextView no2Text;//空气质量--二氧化氮指数
-    private TextView o3Text;//空气质量--臭氧指数
-    private TextView pm10Text;//空气质量--PM10指数
+    //private TextView coText;//空气质量--一氧化碳指数
+    //private TextView no2Text;//空气质量--二氧化氮指数
+    //private TextView o3Text;//空气质量--臭氧指数
+    //private TextView pm10Text;//空气质量--PM10指数
     private TextView pm25Text;//空气质量--PM2.5指数
     private TextView qltyText;//空气质量--空气质量水平
-    private TextView so2Text;//空气质量--二氧化硫指数
-    private TextView airText;//生活建议--空气质量指数
+    //private TextView so2Text;//空气质量--二氧化硫指数
+    //private TextView airText;//生活建议--空气质量指数
     private TextView comfortText;//生活建议--舒适度指数
-    private TextView carWashText;//生活建议--洗车指数
-    private TextView drsgText;//生活建议--穿衣指数
-    private TextView fluText;//生活建议--感冒指数
+    //private TextView carWashText;//生活建议--洗车指数
+    //private TextView drsgText;//生活建议--穿衣指数
+    //private TextView fluText;//生活建议--感冒指数
     private TextView sportText;//生活建议--运动指数
-    private TextView travText;//生活建议--旅游指数
-    private TextView uvText;//生活建议--紫外线指数
+    //private TextView travText;//生活建议--旅游指数
+    //private TextView uvText;//生活建议--紫外线指数
     private ImageView bingPicImg;//背景图片
 
     @Override
@@ -97,26 +98,26 @@ public class WeatherActivity extends AppCompatActivity {
         presText = (TextView) findViewById(R.id.pres_text); //实时天气信息--大气压强
         degreeText = (TextView) findViewById(R.id.degree_text);//实时天气信息--温度
         visText = (TextView) findViewById(R.id.vis_text);//实时天气信息--能见度
-        dirText = (TextView) findViewById(R.id.dir_text);//实时天气信息--风向
-        scText = (TextView) findViewById(R.id.sc_text);//实时天气信息--风力
-        spdText = (TextView) findViewById(R.id.spd_text); //实时天气信息--风速
+        //dirText = (TextView) findViewById(R.id.dir_text);//实时天气信息--风向
+        //scText = (TextView) findViewById(R.id.sc_text);//实时天气信息--风力
+        //spdText = (TextView) findViewById(R.id.spd_text); //实时天气信息--风速
         forecastLayout = (LinearLayout) findViewById(R.id.forecast_layout);//线性布局对象--预报天气
         aqiText = (TextView) findViewById(R.id.aqi_text);//空气质量--空气质量指数
-        coText = (TextView) findViewById(R.id.co_text);//空气质量--一氧化碳指数
-        no2Text = (TextView) findViewById(R.id.no2_text);//空气质量--二氧化氮指数
-        o3Text = (TextView) findViewById(R.id.o3_text);//空气质量--臭氧指数
-        pm10Text = (TextView) findViewById(R.id.pm10_text); //空气质量--PM10指数
+        //coText = (TextView) findViewById(R.id.co_text);//空气质量--一氧化碳指数
+        //no2Text = (TextView) findViewById(R.id.no2_text);//空气质量--二氧化氮指数
+        //o3Text = (TextView) findViewById(R.id.o3_text);//空气质量--臭氧指数
+        //pm10Text = (TextView) findViewById(R.id.pm10_text); //空气质量--PM10指数
         pm25Text = (TextView) findViewById(R.id.pm25_text);//空气质量--PM2.5指数
         qltyText = (TextView) findViewById(R.id.qlty_text);//空气质量--空气质量水平
-        so2Text = (TextView) findViewById(R.id.so2_text); //空气质量--二氧化硫指数
-        airText = (TextView) findViewById(R.id.air_text); //生活建议--空气质量指数
+        //so2Text = (TextView) findViewById(R.id.so2_text); //空气质量--二氧化硫指数
+        //airText = (TextView) findViewById(R.id.air_text); //生活建议--空气质量指数
         comfortText = (TextView) findViewById(R.id.comfort_text);//生活建议--舒适度指数
-        carWashText = (TextView) findViewById(R.id.car_wash_text);//生活建议--洗车指数
-        drsgText = (TextView) findViewById(R.id.drsg_text);//生活建议--穿衣指数
-        fluText = (TextView) findViewById(R.id.flu_text); //生活建议--感冒指数
+        //carWashText = (TextView) findViewById(R.id.car_wash_text);//生活建议--洗车指数
+        //drsgText = (TextView) findViewById(R.id.drsg_text);//生活建议--穿衣指数
+        //fluText = (TextView) findViewById(R.id.flu_text); //生活建议--感冒指数
         sportText = (TextView) findViewById(R.id.sport_text);//生活建议--运动指数
-        travText = (TextView) findViewById(R.id.trav_text);//生活建议--旅游指数
-        uvText = (TextView) findViewById(R.id.uv_text);//生活建议--紫外线指数
+        //travText = (TextView) findViewById(R.id.trav_text);//生活建议--旅游指数
+        //uvText = (TextView) findViewById(R.id.uv_text);//生活建议--紫外线指数
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);//DrawerLayout实例
         navButton = (Button) findViewById(R.id.nav_button);//Button实例
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);//获取SwipeRefreshLayout的实例
@@ -124,11 +125,16 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);//调用setColorSchemeResources()方法来设置下拉刷新进度条的颜色
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
+        //Log.d("WeatherActivity", weatherString);
         if(weatherString != null){
             //有缓存时直接解析天气数据
             Weather weather = Utility.handleWeatherResponse(weatherString);
             mWeatherId = weather.basic.weatherId;
-            showWeatherInfo(weather);
+            if(weather != null){
+                showWeatherInfo(weather);
+            }else{
+                Toast.makeText(WeatherActivity.this,"天气未成功获得，实例化失败",Toast.LENGTH_SHORT).show();
+            }
         }else{
             //无缓存时去服务器查询天气
             mWeatherId = getIntent().getStringExtra("weather_id");
@@ -166,12 +172,13 @@ public class WeatherActivity extends AppCompatActivity {
      */
     public void requestWeather(final String weatherId){
         //组装接口地址
-        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "4bafacefc6434601baeb90524eb71c56";
+        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=4bafacefc6434601baeb90524eb71c56";
         //向组装好的地址发送请求，服务器会将相应城市的天气信息以JSON()格式返回
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseText = response.body().string();
+                Log.d("WeatherActivity", responseText);
                 //将返回的JSON数据转换成Weather对象
                 final Weather weather = Utility.handleWeatherResponse(responseText);
                 //将当前线程切换到主线程
@@ -254,16 +261,16 @@ public class WeatherActivity extends AppCompatActivity {
         titleUpdateTime.setText(updateTime);
         titleLat.setText(lat);
         titleLon.setText(lon);
-        String weatherInfo = weather.now.more.info;
+        String weatherInfo = weather.now.info;
         String flInfo = weather.now.fl + "℃";
         String humInfo = weather.now.hum;
         String pcpnInfo = weather.now.pcpn + "mm";
         String presInfo = weather.now.pres + "Pa";
         String degree = weather.now.temperature + "℃";
         String visInfo = weather.now.vis;
-        String dirInfo = weather.now.wind.dir;
-        String scInfo = weather.now.wind.sc;
-        String spdInfo = weather.now.wind.spd + "m/s";
+        //String dirInfo = weather.now.wind.dir;
+        //String scInfo = weather.now.wind.sc;
+        //String spdInfo = weather.now.wind.spd + "m/s";
         weatherInfoText.setText(weatherInfo);
         flText.setText(flInfo);
         humText.setText(humInfo);
@@ -271,9 +278,9 @@ public class WeatherActivity extends AppCompatActivity {
         presText.setText(presInfo);
         degreeText.setText(degree);
         visText.setText(visInfo);
-        dirText.setText(dirInfo);
-        scText.setText(scInfo);
-        spdText.setText(spdInfo);
+        //dirText.setText(dirInfo);
+        //scText.setText(scInfo);
+        //spdText.setText(spdInfo);
         forecastLayout.removeAllViews();
         for(Forecast forecast : weather.forecastList){
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
@@ -281,44 +288,39 @@ public class WeatherActivity extends AppCompatActivity {
             TextView infoText = (TextView)view.findViewById(R.id.info_text);
             TextView maxText = (TextView)view.findViewById(R.id.max_text);
             TextView minText = (TextView)view.findViewById(R.id.min_text);
-            TextView dirText = (TextView)view.findViewById(R.id.dir_text);
-            TextView scText = (TextView)view.findViewById(R.id.sc_text);
+            //TextView dirText = (TextView)view.findViewById(R.id.dir_text);
+            //TextView scText = (TextView)view.findViewById(R.id.sc_text);
             dateText.setText(forecast.date);
             infoText.setText(forecast.more.info);
             maxText.setText(forecast.temperature.max);
             minText.setText(forecast.temperature.min);
-            dirText.setText(forecast.wind.dir);
-            scText.setText(forecast.wind.sc);
+            //dirText.setText(forecast.wind.dir);
+            //scText.setText(forecast.wind.sc);
             forecastLayout.addView(view);
         }
 
         if(weather.aqi != null){
             aqiText.setText(weather.aqi.city.aqi);
-            coText.setText(weather.aqi.city.co);
-            no2Text.setText(weather.aqi.city.no2);
-            o3Text.setText(weather.aqi.city.o3);
-            pm10Text.setText(weather.aqi.city.pm10);
             pm25Text.setText(weather.aqi.city.pm25);
             qltyText.setText(weather.aqi.city.qlty);
-            so2Text.setText(weather.aqi.city.so2);
         }
 
-        String air = "空气质量:"+ weather.suggestion.air.info;
-        String comfort = "舒适度:"+ weather.suggestion.comfort.info;
-        String carWash = "洗车指数:"+ weather.suggestion.carWash.info;
-        String drsg = "穿衣指数:"+ weather.suggestion.drsg.info;
-        String flu = "感冒指数:"+ weather.suggestion.flu.info;
-        String sport = "运动建议:"+ weather.suggestion.sport.info;
-        String trav = "旅游指数:"+ weather.suggestion.trav.info;
-        String uv = "紫外线指数:"+ weather.suggestion.uv.info;
-        airText.setText(air);
+//        String air = "空气质量:"+ weather.suggestion.air.info;
+        String comfort = "舒适度:"+ weather.suggestion.comfort.brf;
+//        String carWash = "洗车指数:"+ weather.suggestion.carWash.info;
+//        String drsg = "穿衣指数:"+ weather.suggestion.drsg.info;
+//        String flu = "感冒指数:"+ weather.suggestion.flu.info;
+        String sport = "运动建议:"+ weather.suggestion.comfort.info;
+//        String trav = "旅游指数:"+ weather.suggestion.trav.info;
+//        String uv = "紫外线指数:"+ weather.suggestion.uv.info;
+//        airText.setText(air);
         comfortText.setText(comfort);
-        carWashText.setText(carWash);
-        drsgText.setText(drsg);
-        fluText.setText(flu);
+//        carWashText.setText(carWash);
+//        drsgText.setText(drsg);
+//        fluText.setText(flu);
         sportText.setText(sport);
-        travText.setText(trav);
-        uvText.setText(uv);
+//        travText.setText(trav);
+//        uvText.setText(uv);
         //在设置完所有数据后，再将ScrollView设为可见
         weatherLayout.setVisibility(View.VISIBLE);
         //激活AutoUpdateService这个服务，只要选中了某个城市并成功更新天气之后，

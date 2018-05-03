@@ -1,6 +1,7 @@
 package com.example14.coolweather.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example14.coolweather.db.City;
 import com.example14.coolweather.db.Country;
@@ -60,7 +61,7 @@ public class Utility {    // 解析省市县的json数据，并保存在数据�
                     JSONObject countryObject = allCountries.getJSONObject(i);
                     Country country = new Country();
                     country.setCountryName(countryObject.getString("name"));
-                    country.setWeatherId(countryObject.getInt("weather_id"));
+                    country.setWeatherId(countryObject.getString("weather_id"));
                     country.setCityId(cityId);
                     country.save();
                 }

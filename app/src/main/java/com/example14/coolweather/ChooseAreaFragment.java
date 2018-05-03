@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,7 +106,7 @@ public class ChooseAreaFragment extends Fragment {
                     queryCountries();
                 }else if (currentLevel == LEVEL_COUNTRY){
                     //如果当前级别是县，则启动WeatherActivity，并把当前选中县的天气id传递出去
-                    int weatherId = countyList.get(position).getWeatherId();
+                    String weatherId = countyList.get(position).getWeatherId();
                     if (getActivity()instanceof MainActivity){//碎片在MainActivity中，则处理逻辑不变
                         Intent intent = new Intent(getActivity(), WeatherActivity.class);
                         intent.putExtra("weather_id", weatherId);
@@ -115,7 +116,7 @@ public class ChooseAreaFragment extends Fragment {
                         WeatherActivity activity = (WeatherActivity)getActivity();
                         activity.drawerLayout.closeDrawer(view);//关闭滑动菜单
                         activity.swipeRefresh.setRefreshing(true);//显示下拉刷新进度条
-                        activity.requestWeather(Integer.toString(weatherId));//请求城市天气信息
+                        activity.requestWeather(weatherId);//请求城市天气信息
                     }
 
                 }
@@ -214,6 +215,7 @@ public class ChooseAreaFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseText = response.body().string();
+                //Log.d("ChooseareaFragment", responseText);
                 boolean result = false;
                 if("province".equals(type)){
                     //解析和处理从服务器返回的数据，并存储到数据库中

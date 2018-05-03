@@ -17,7 +17,6 @@ public class Basic {
     public String cityLon;//城市的纬度
 
     public Update update;
-
     public class Update{
         @SerializedName("loc")
         public String updateTime;//接口更新时间
